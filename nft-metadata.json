@@ -1,0 +1,12 @@
+{
+"attributes": [
+    {
+    "color": "Blue",
+    "value": "ABC"
+    
+    }
+    ],
+    "description": "This is a nice picture.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmP8NUUYY9d5VsdUJDKoRsuJvKWr2dMvNFCVxg65YC97NW?_gl=1*5qrb4l*_ga*MTcwODE5MDM0My4xNjc2Mjc3OTY3*_ga_5RMPXG14TE*MTY3NjI3Nzk2Ny4xLjEuMTY3NjI3ODA3NC4zMy4wLjA." ,
+    "name": "Painting"
+}
