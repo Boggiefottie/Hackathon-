@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 import './Navbar.css'
 import AnimatedRoutes from './AnimatedRoutes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import {ConnectButton} from 'web3uikit'
 function Navbar() {
   return (
     
@@ -51,6 +52,7 @@ function Navbar() {
               </div>
             </div>
           </div>
+          {/* <ConnectButton moralisAuth= {false}></ConnectButton> */}
         </nav>
         <AnimatedRoutes />
       </Router>
