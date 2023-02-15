@@ -1,4 +1,4 @@
-import  React,{useState} from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,13 +8,12 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as Link1 } from 'react-router-dom';
-import {auth} from '../firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, provider } from '../firebase'
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 
 function Copyright(props) {
   return (
@@ -31,21 +30,19 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Login() {
+export default function Login(setIsAuth) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const handleSubmit = (event) => {
     event.preventDefault();
-    signInWithEmailAndPassword(auth,email,password)
-    .then((userCrederntials)=>
-    {
-      console.log(userCrederntials);
-    })
-    .catch((error)=>
-    {
-      console.log(error);
-    }) 
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCrederntials) => {
+        console.log(userCrederntials);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
@@ -82,7 +79,7 @@ export default function Login() {
               autoComplete="email"
               autoFocus
               value={email}
-              onChange={(e) =>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -94,7 +91,7 @@ export default function Login() {
               id="password"
               autoComplete="current-password"
               value={password}
-              onChange={(e) =>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
