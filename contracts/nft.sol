@@ -22,7 +22,7 @@ contract Collection is ERC721Enumerable, Ownable {
     uint256 public maxMintAmount = 5;
     bool public paused = false;
 
-    constructor() ERC721("Net2Dev NFT Collection", "N2D") {}
+    constructor() ERC721("Pioneers NFT Collection", "PIO") {}
 
     function addCurrency(
         //currency used to pay this
