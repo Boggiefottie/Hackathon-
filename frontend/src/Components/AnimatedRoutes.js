@@ -17,7 +17,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path='/' element={<Home />} />
         <Route path='/Shop' element={<Shop  />} />
-        <Route path='/Product-Info/:id' element={<Inner  />}/>
+        <Route path='/products/:id' element={<Inner  />}/>
         <Route path='/Contact' element={<Contact  />} />
         <Route path='/About' element={<About  />} />
         <Route path='/Cart' element={<Cart  />} />

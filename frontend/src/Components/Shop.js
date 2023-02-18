@@ -70,7 +70,7 @@ const Shop = () => {
                   <div class="card-body">
                     <h5 class="card-title mb-0">{product.title.substring(0, 12)}....</h5>
                     <p class="card-text lead fw-bold">{product.price} PIO</p>
-                    <Link to={`/Product-Info/${product.id}`} class="btn btn-outline-dark"><button class="Buy-btn">Buy Now</button></Link>
+                    <Link to={`/products/${product.id}`} class="btn btn-outline-dark"><button class="Buy-btn">Buy Now</button></Link>
                   </div>
                 </div>
               </div>
