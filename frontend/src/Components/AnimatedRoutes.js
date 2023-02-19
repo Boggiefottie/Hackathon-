@@ -9,6 +9,7 @@ import Cart from './Cart';
 import Inner from './Inner';
 import Login from './Login';
 import SignUp from './SignUp';
+import { AuthProvider } from './contexts/AuthContext';
 function AnimatedRoutes() {
   const location = useLocation();
 
@@ -21,8 +22,10 @@ function AnimatedRoutes() {
         <Route path='/Contact' element={<Contact  />} />
         <Route path='/About' element={<About  />} />
         <Route path='/Cart' element={<Cart  />} />
+        {/* <AuthProvider> */}
         <Route path='/Login' element={<Login />} />
         <Route path='/SignUp' element={<SignUp />} />
+        {/* </AuthProvider> */}
       </Routes>
     </AnimatePresence>
   )

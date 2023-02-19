@@ -54,30 +54,27 @@ const Shop = () => {
     return (
       <>
         <div className="buttons d-flex justify-content-center mb-5 pb-5" class="filter-container">
-          <button className="btn btn-outline-dark" onClick={() => setFilter(data)} class="All-filter">All</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("men's clothing")} class="Men-filter">Men's Clothing</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("women's clothing")} class="Women-filter">Women's Clothing</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("jewelery")} class="Jewellery-filter">Jewellery</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("electronics")} class="Electronics-filter">Electronics</button>
-
+          <button className="btn btn-outline-dark" onClick={() => setFilter(data)} >All</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("men's clothing")} >Men's Clothing</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("women's clothing")} >Women's Clothing</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("jewelery")} >Jewellery</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("electronics")} >Electronics</button>
         </div>
         {filter.map((product) => {
           return (
             <>
-              <div className="col-md-3 mb-4" class="product-container">
+              <div className="col-md-3 mb-4" >
                 <div class="card h-100 text-center p-4 " key={product.id}>
                   <img src={product.image} class="card-img-top" alt={product.title} height="250px" width="250px"/>
                   <div class="card-body">
                     <h5 class="card-title mb-0">{product.title.substring(0, 12)}....</h5>
                     <p class="card-text lead fw-bold">{product.price} PIO</p>
-                    <Link to={`/products/${product.id}`} class="btn btn-outline-dark"><button class="Buy-btn">Buy Now</button></Link>
+                    <Link to={`/products/${product.id}`} class="btn btn-outline-dark">Buy Now</Link>
                   </div>
                 </div>
               </div>
             </>
           )
-
-
         })}
       </>
     )

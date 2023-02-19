@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useRef} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,7 +13,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as Link1 } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+// import { auth } from '../firebase';
+import { useAuth } from './contexts/AuthContext';
+import { Alert } from "react-bootstrap"
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -30,23 +32,35 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const emailRef=useRef();
+  const passwordRef=useRef();
+  const passwordConfirmRef=useRef();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("")
+  const { signup } = useAuth()
   const handleSubmit = (event) => {
     event.preventDefault();
-    createUserWithEmailAndPassword(auth,email,password);
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+    //   return setError("Passwords do not match")
+    // }
+
+    // try {
+    //   setError("")
+    //   setLoading(true)
+    //   signup(emailRef.current.value, passwordRef.current.value)
+    // } catch {
+    //   setError("Failed to create an account")
+    // }
+
+    // setLoading(false)
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
+      {error && <Alert variant="danger">{error}</Alert>}
         <CssBaseline />
         <Box
           sx={{
@@ -97,8 +111,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  value={email}
-                  onChange={(e) =>setEmail(e.target.value)}
+                  ref={emailRef}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -110,8 +123,19 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  value={password}
-                  onChange={(e) =>setPassword(e.target.value)}
+                  ref={passwordRef}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="confirm-password"
+                  label="Confirm-Password"
+                  type="password"
+                  id="password"
+                  autoComplete="confirm-new-password"
+                  ref={passwordConfirmRef}
                 />
               </Grid>
               <Grid item xs={12}>
