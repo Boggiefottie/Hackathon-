@@ -29,7 +29,7 @@ contract MintPioneers is ERC20 , ERC20Permit{
     {
         OwnerToToken[msg.sender] = OwnerToToken[msg.sender] + initialSupply;
         _mint(msg.sender, initialSupply);
-         emit mintPioneers_TokenMinted(initialSupply);
+         emit mintPioneers_TokenMinted(initialSupply * 10**18);
     }
     
         //0.5 eth = 1 PIO 
@@ -47,7 +47,7 @@ contract MintPioneers is ERC20 , ERC20Permit{
         } 
 
         // pioneers to usd
-        function latestRoundData() external view returns(uint256)
+        function latestRoundData() external view returns(uint256,int256)
         {
                 (
         uint80 roundId,
@@ -58,11 +58,14 @@ contract MintPioneers is ERC20 , ERC20Permit{
     ) = priceFeed.latestRoundData();
  
     uint256 usd = OwnerToToken[msg.sender]*uint256(answer)*1/2;
-        return (usd);
+        return (usd,answer);
         }
   
-    
-    
+    function getAmt() view public returns(uint256)
+    {
+        return eqvi_eth;
+    }
+
     
 }
 

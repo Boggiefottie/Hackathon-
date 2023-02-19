@@ -20,7 +20,9 @@
     "@alch/alchemy-web3": "^1.4.7",
     "@chainlink/contracts": "^0.6.1",
     "@openzeppelin/contracts": "^4.8.1",
-    "dotenv": "^16.0.3"
+    "color-convert": "^2.0.1",
+    "dotenv": "^16.0.3",
+    "supports-color": "^9.3.1"
   },
   "directories": {
     "test": "test"

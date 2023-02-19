@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 import './Navbar.css'
 import AnimatedRoutes from './AnimatedRoutes'
 import { signOut } from "firebase/auth";
 import { auth } from '../firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ethers } from "ethers";
 // import {ConnectButton} from 'web3uikit'
+
+
 function Navbar() {
+  const [address, setAddress] = useState("")
+  const [connectionStatus, setConnectionStatus] = useState("Connect")
+
+  const handleConnect = async () => {
+    if (window.ethereum) {
+      const account = await window.ethereum.request({ method: "eth_requestAccounts" })
+
+      console.log("connected")
+      setAddress(account[0])
+      setConnectionStatus("Connected")
+    }
+    else {
+      window.alert("Install a Wallet")
+    }
+  }
+
 
   return (
 
@@ -49,9 +68,12 @@ function Navbar() {
               <button class="Login-btn">
                 <i class="fas fa-sign-in-alt"></i>
               </button>
-              <div class="Login-Content">               
-                    <a ><Link to="/Login"><button class="SignIn-btn">Login</button></Link></a>
-                    <a ><Link to="/SignUp"><button class="SignUp-btn">SignUp</button></Link></a>
+              <button onClick={handleConnect} >
+                {connectionStatus}
+              </button>
+              <div class="Login-Content">
+                <a ><Link to="/Login"><button class="SignIn-btn">Login</button></Link></a>
+                <a ><Link to="/SignUp"><button class="SignUp-btn">SignUp</button></Link></a>
               </div>
             </div>
           </div>
@@ -63,4 +85,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default Navbar 
