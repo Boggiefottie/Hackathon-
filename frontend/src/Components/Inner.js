@@ -44,23 +44,28 @@ const Inner = () => {
     }
     const handleMinting = async () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const address = await window.ethereum.request({ method: "eth_requestAccounts" })
+        const address ="0x56C0f07c9a945379f2243850C4A60419486933d1";
         const signer = provider.getSigner()
         console.log(provider)
         const balance = await provider.getBalance("0x4C6C922a1044Bb6840B926BBD461A1DCff40bd1B")
         // console.log(ethers.utils.formatEther(balance))
-
+        console.log(address);
         // setMintPioneers(_mintPioneers)
 
-        const mintPioneers = new ethers.Contract("0xEC2A9D5deDD2EdB22Fd991730a591198e149b097", abi, signer)
+        const mintPioneers = new ethers.Contract("0xEC2A9D5deDD2EdB22Fd991730a591198e149b097", abi, signer);
         const usd = await mintPioneers.latestRoundData()
 
         console.log(ethers.utils.formatEther(usd[1]) * 10000000000)
 
         await mintPioneers.mintTokens((((product.price) * 500) / (ethers.utils.formatEther(usd[1]) * 10000000000)).toString)
-        // await mintPioneers.transfer("0x4C6C922a1044Bb6840B926BBD461A1DCff40bd1B", (((product.price) * 500) / (ethers.utils.formatEther(usd[1]) * 10000000000)).toString)
-        window.alert("Tokens Minted")
-    }
+        
+        // await mintPioneers.approve(address,  (((product.price) * 500) / (ethers.utils.formatEther(usd[1]) * 10000000000)).toString)
+        // await mintPioneers.transfer(address, (((product.price) * 500) / (ethers.utils.formatEther(usd[1]) * 10000000000)).toString)
+        window.alert("Tokens Minted")
+
+    };
+
+
     const ShowProduct = () => {
         return (
             <>
@@ -91,9 +96,11 @@ const Inner = () => {
                     <Link to="/cart" className="btn btn-dark ms-2 px-3 py-2 ">
                         Go to Cart
                     </Link>
-                    <button onClick={handleMinting}>
+                    <Link to='/mint'>
+                    <button>
                         Get Tokens
                     </button>
+                    </Link>
                 </div>
 
             </>

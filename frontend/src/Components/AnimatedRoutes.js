@@ -9,6 +9,7 @@ import Cart from './Cart';
 import Inner from './Inner';
 import Login from './Login';
 import SignUp from './SignUp';
+import NFT from './NFT';
 // import { AuthProvider } from './contexts/AuthContext';
 function AnimatedRoutes() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function AnimatedRoutes() {
         <Route path='/Cart' element={<Cart  />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/SignUp' element={<SignUp />} />
+        <Route path='/mint' element={<NFT />} />
       </Routes>
     </AnimatePresence>
   )

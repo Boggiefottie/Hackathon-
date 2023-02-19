@@ -13,7 +13,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as Link1 } from 'react-router-dom';
 import { auth, provider } from '../firebase'
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 
 function Copyright(props) {
   return (
@@ -30,18 +30,21 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Login(setIsAuth) {
+export default function Login() {
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("");
+  const [isAuth, setIsAuth] = useState(false)
   const handleSubmit = (event) => {
     event.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCrederntials) => {
         console.log(userCrederntials);
+        setIsAuth(true);
       })
       .catch((error) => {
         console.log(error);
+        setIsAuth(false)
       })
     const data = new FormData(event.currentTarget);
     console.log({
@@ -50,7 +53,18 @@ export default function Login(setIsAuth) {
     });
   };
 
+  const signUserOut=()=>
+  {
+    signOut(auth).then(()=>
+    {
+      setIsAuth(false)
+      window.location.pathname="/Login";
+      console.log("Signed Out Succesfully");
+    })
+  }
+
   return (
+    (isAuth?(
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -122,5 +136,11 @@ export default function Login(setIsAuth) {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    ):
+    <Box component="form" onClick={signUserOut} noValidate sx={{ mt: 1 }}>
+    <Button type='Submit'
+    fullWidth
+    variant="contained"
+    sx={{ mt: 3, mb: 2 }}>Sign Out</Button></Box>)
   );
 }
