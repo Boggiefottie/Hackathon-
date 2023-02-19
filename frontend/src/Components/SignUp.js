@@ -13,9 +13,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as Link1 } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-// import { auth } from '../firebase';
-import { useAuth } from './contexts/AuthContext';
-import { Alert } from "react-bootstrap"
+import { auth } from '../firebase';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -32,35 +30,24 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const emailRef=useRef();
-  const passwordRef=useRef();
-  const passwordConfirmRef=useRef();
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("")
-  const { signup } = useAuth()
   const handleSubmit = (event) => {
     event.preventDefault();
-    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-    //   return setError("Passwords do not match")
-    // }
-
-    // try {
-    //   setError("")
-    //   setLoading(true)
-    //   signup(emailRef.current.value, passwordRef.current.value)
-    // } catch {
-    //   setError("Failed to create an account")
-    // }
-
-    // setLoading(false)
-  }
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log(userCredential);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-      {error && <Alert variant="danger">{error}</Alert>}
         <CssBaseline />
         <Box
           sx={{
@@ -111,7 +98,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  ref={emailRef}
+                  value={email}
+                  onChange={(e)=>setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -123,19 +111,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  ref={passwordRef}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="confirm-password"
-                  label="Confirm-Password"
-                  type="password"
-                  id="password"
-                  autoComplete="confirm-new-password"
-                  ref={passwordConfirmRef}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -155,7 +132,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link1 href="#" variant="body2" to="/Login">
+                <Link1 variant="body2" to="/Login">
                   Already have an account? Sign in
                 </Link1>
               </Grid>
