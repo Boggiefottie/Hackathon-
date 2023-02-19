@@ -1,0 +1,108 @@
+/* .product-container
+{
+    width: 350px;
+    display: inline-block;
+    height: 450px;
+    border: solid thin black;
+}
+
+.Buy-btn
+{
+    border:solid thin black ;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.Buy-btn:hover
+{
+    background-color: #380063;
+    color: white;
+}
+
+.filter-container
+{
+    height: 40px;
+    margin-bottom: 100px;
+    font-size: 15px;
+}
+
+.All-filter
+{   
+    border-radius: 5px;
+    border: solid thin black;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.Men-filter
+{
+    border-radius: 5px;
+    border: solid thin black;
+    height: 40px;
+    width: 120px;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.Women-filter
+{
+    border-radius: 5px;
+    border: solid thin black;
+    height: 40px;
+    width: 140px;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.Jewellery-filter
+{
+    border-radius: 5px;
+    border: solid thin black;
+    height: 40px;
+    width: 100px;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.Electronics-filter
+{
+    border-radius: 5px;
+    border: solid thin black;
+    height: 40px;
+    width: 120px;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.All-filter:hover{
+    background-color: #380063;
+    color: white;
+}
+
+.Electronics-filter:hover
+{
+    background-color: #380063;
+    color: white;
+}
+
+.Jewellery-filter:hover
+{
+    background-color: #380063;
+    color: white;
+}
+
+.Men-filter:hover
+{
+    background-color: #380063;
+    color: white;
+}
+
+.Women-filter:hover
+{
+    background-color: #380063;
+    color: white;
+} */

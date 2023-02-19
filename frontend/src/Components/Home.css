@@ -1,7 +1,7 @@
-.Home-Page
-{
-    background-image: url("");
-    background-size: 50% 633px;
+.Home-Page {
+    height: 633px;
+    background-image: url("C:\Users\HP\Documents\GitHub\Hackathon-\frontend\public\Assets\Bg.jpg");
+    background-size: 100% 633px;
     position: relative;
     image-resolution: 900dpi;
 }

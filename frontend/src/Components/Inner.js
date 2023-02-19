@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
+import './Inner.css'
 import { ethers } from 'ethers';
 import abi from "../abi.json"
 const Inner = () => {
 
     const { id } = useParams();
     const [product, setProduct] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     // const [usd, setUsd] = useState(0)
     // const [mintPioneers, setMintPioneers] = useState(null)
 
@@ -21,7 +22,7 @@ const Inner = () => {
         }
 
         getProduct();
-    }, [])
+    }, [], [])
 
     const Loading = () => {
         return (
@@ -63,24 +64,25 @@ const Inner = () => {
     const ShowProduct = () => {
         return (
             <>
-                <div className="col-md-6">
+
+                <div className="col-md-6" >
                     <img src={product.image} alt={product.title} height="400px" width="400px" />
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-6" >
                     <h4 className="text-uppercase text-black-50">
                         {product.category}
                     </h4>
-                    <h1 className="display-5">
+                    <h1 className="display-5" >
                         {product.title}
                     </h1>
-                    <p className="lead">
+                    <p className="lead" >
                         Rating:{product.rating && product.rating.rate}
                         <i className="fa fa-star"></i>
                     </p>
-                    <h3 className="display-6 fw-bold my-4">
-                        ${product.price}
+                    <h3 className="display-6 fw-bold my-4" >
+                        PIO {product.price}
                     </h3>
-                    <p className="lead">
+                    <p className="lead" >
                         {product.description}
                     </p>
                     <button className="btn btn-outline-dark px-4 py-2" /*onClick={()=>addProduct(product)} */>
@@ -93,12 +95,12 @@ const Inner = () => {
                         Get Tokens
                     </button>
                 </div>
+
             </>
         )
     }
     return (
         <div>
-            <h1>Product-Info</h1>
             <div className="container">
                 <div className="row">
                     {loading ? <Loading /> : <ShowProduct />}

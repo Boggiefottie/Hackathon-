@@ -5,6 +5,7 @@ import { ethers } from "ethers";
 import abi from "../abi.json"
 
 
+import './Shop.css'
 const Shop = () => {
 
   const [data, setData] = useState([])
@@ -80,35 +81,31 @@ const Shop = () => {
     return (
       <>
         <button >Balance </button>
-        <div className="buttons d-flex justify-content-center mb-5 pb-5">
-          <button className="btn btn-outline-dark" onClick={() => setFilter(data)}>All</button>
+        <div className="buttons d-flex justify-content-center mb-5 pb-5" class="filter-container">
+          <button className="btn btn-outline-dark" onClick={() => setFilter(data)} >All</button>
           <button className="btn btn-primary" >Get Balance</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("men's clothing")}>Men's Clothing</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("women's clothing")}>Women's Clothing</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("jewelery")}>Jewellery</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("electronics")}>Electronics</button>
-
-
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("men's clothing")} >Men's Clothing</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("women's clothing")} >Women's Clothing</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("jewelery")} >Jewellery</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("electronics")} >Electronics</button>
         </div>
         {filter.map((product) => {
           return (
             <>
-              <div className="col-md-3 mb-4">
+              <div className="col-md-3 mb-4" >
                 <div class="card h-100 text-center p-4 " key={product.id}>
-                  <img src={product.image} class="card-img-top" alt={product.title} height="250px" />
+                  <img src={product.image} class="card-img-top" alt={product.title} height="250px" width="250px" />
                   <div class="card-body">
                     <h5 class="card-title mb-0">{product.title.substring(0, 12)}....</h5>
-                    <p class="card-text lead fw-bold">${product.price}  </p>
+                    <p class="card-text lead fw-bold">{product.price} PIO  </p>
                     <p class="card-text lead fw-bold">{((product.price) * 500) / usd} POI </p>
-                    <Link to={`/Product-Info/${product.id}`} class="btn btn-outline-dark">Buy Now</Link>
+                    <Link to={`/products/${product.id}`} class="btn btn-outline-dark">Buy Now</Link>
                     {/* <button onClick={assignTokens}>Give details </button> */}
                   </div>
                 </div>
               </div>
             </>
           )
-
-
         })}
       </>
     )

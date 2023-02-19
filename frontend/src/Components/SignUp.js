@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useRef} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -31,16 +31,17 @@ const theme = createTheme();
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("")
   const handleSubmit = (event) => {
     event.preventDefault();
-    createUserWithEmailAndPassword(auth,email,password);
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log(userCredential);
+    })
+    .catch((error) => {
+      console.log(error);
     });
   };
 
@@ -98,7 +99,7 @@ export default function SignUp() {
                   name="email"
                   autoComplete="email"
                   value={email}
-                  onChange={(e) =>setEmail(e.target.value)}
+                  onChange={(e)=>setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -111,7 +112,7 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                   value={password}
-                  onChange={(e) =>setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -131,7 +132,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link1 href="#" variant="body2" to="/Login">
+                <Link1 variant="body2" to="/Login">
                   Already have an account? Sign in
                 </Link1>
               </Grid>
